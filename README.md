@@ -1,14 +1,17 @@
 # Trendify
+<!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
 
 <h1>Mobile Programming</h1>
-Kelompok Social Media 2
-Eddy Nathansyah (535210009)
-Apriyanto Chandra (535210032)
-Raymond Briant Calvalie (535210035)
-Vanness Vincent Ferary Kartono (535210038)
-Adyatma Ruliff Brahmantyo (535210047)
-Arya Dwi Saputra (535210049)
+<h1>Kelompok Social Media 2</h1>
+  <p>535210009-Eddy Nathansyah</p>
+  <p>535210032-Apriyanto Chandra</p>
+  <p>535210035-Raymond Briant Calvalie</p>
+  <p>535210038-Vanness Vincent Ferary Kartono</p>
+  <p>535210047-Adyatma Ruliff Brahmantyo</p>
+  <p>535210049-Arya Dwi Saputra</p>
+</body>
+</html>
