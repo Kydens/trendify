@@ -8,7 +8,7 @@ class Login extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Text('Hello'),
+          child: Text('Hello Ini Login'),
         ),
       ),
     );
