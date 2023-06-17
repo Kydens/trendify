@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:trendify/Routes/routes.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,9 +10,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Trendify',
-      initialRoute: '/',
-      routes: routes,
+      home: Scaffold(
+        body: Center(
+          child: Text('Hello Ini Login'),
+        ),
+      ),
     );
   }
 }
