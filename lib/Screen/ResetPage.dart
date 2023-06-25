@@ -195,4 +195,5 @@ class _ResetPageState extends State<ResetPage> {
         ),
       ),
     );
-  }Page
+  }
+}
