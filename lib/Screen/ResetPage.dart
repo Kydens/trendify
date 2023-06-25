@@ -2,35 +2,31 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class ResetPage extends StatefulWidget {
+  const ResetPage({Key? key}) : super(key: key);
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _ResetPageState createState() => _ResetPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _ResetPageState extends State<ResetPage> {
   bool _isPasswordVisible = false;
+  bool _isPasswordVisible1 = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 34, 40, 49),
       appBar: AppBar(
+        titleSpacing: 0,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Image(
-              image: AssetImage('images/arrow_back.png'),
-            ),
             Image.asset(
               'images/Hedgehog.png',
               width: 42,
               height: 42,
             ),
-            const SizedBox(
-              width: 32,
-            )
           ],
         ),
         centerTitle: true,
@@ -44,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Buat Akun Anda',
+              'Reset Password',
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
@@ -63,38 +59,12 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               child: TextField(
                 decoration: InputDecoration(
-                  labelText: 'Username',
-                  labelStyle:
-                      TextStyle(color: Color.fromARGB(255, 228, 226, 226)),
-                  hintText: 'Masukkan username',
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 224, 12, 12)),
-                  contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                  prefixIcon: Icon(Icons.account_box),
-                ),
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300,
-                  height: 1.5,
-                  color: Color(0xffeeeeee),
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                border: Border.all(color: Color(0xffeeeeee)),
-                color: Color(0xff393e46),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
                   labelText: 'Email',
                   labelStyle: TextStyle(
-                      color: const Color.fromARGB(255, 215, 210, 210)),
-                  hintText: 'Masukkan Email',
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 226, 3, 3)),
+                      color: const Color.fromARGB(255, 236, 233, 233)),
+                  hintText: 'Masukkan Email Anda',
+                  hintStyle:
+                      TextStyle(color: const Color.fromARGB(255, 206, 25, 25)),
                   contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
                   prefixIcon: Icon(Icons.mail),
                 ),
@@ -116,14 +86,54 @@ class _RegisterPageState extends State<RegisterPage> {
                 borderRadius: BorderRadius.circular(3),
               ),
               child: TextField(
+                obscureText: !_isPasswordVisible1,
+                decoration: InputDecoration(
+                  labelText: 'Password Baru',
+                  labelStyle: TextStyle(color: Colors.white),
+                  hintText: 'Password baru',
+                  hintStyle:
+                      TextStyle(color: const Color.fromARGB(255, 239, 10, 10)),
+                  contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
+                  prefixIcon: Icon(Icons.lock),
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isPasswordVisible1 = !_isPasswordVisible1;
+                      });
+                    },
+                    child: Icon(
+                      _isPasswordVisible1
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Color(0xffeeeeee),
+                    ),
+                  ),
+                ),
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w300,
+                  height: 1.5,
+                  color: Color(0xffeeeeee),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+            Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xffeeeeee)),
+                color: Color(0xff393e46),
+                borderRadius: BorderRadius.circular(3),
+              ),
+              child: TextField(
                 obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
-                  labelText: 'Password',
-                  labelStyle: TextStyle(
-                      color: const Color.fromARGB(255, 237, 235, 235)),
+                  labelText: 'Konfirmasi Password ',
+                  labelStyle: TextStyle(color: Colors.white),
                   hintText: 'Masukkan Password Anda',
                   hintStyle:
-                      TextStyle(color: const Color.fromARGB(255, 221, 10, 10)),
+                      TextStyle(color: const Color.fromARGB(255, 225, 16, 16)),
                   contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
                   prefixIcon: Icon(Icons.lock),
                   suffixIcon: GestureDetector(
@@ -167,7 +177,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     vertical: 10,
                   ),
                   child: Text(
-                    'Daftar',
+                    'Reset',
                     style: GoogleFonts.poppins(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
@@ -185,5 +195,4 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
-  }
-}
+  }Page
