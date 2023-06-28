@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:trendify/utils/colors.dart';
@@ -37,7 +36,7 @@ class _ResetPageState extends State<ResetPage> {
           elevation: 0,
         ),
         body: Padding(
-          padding: EdgeInsets.fromLTRB(
+          padding: const EdgeInsets.fromLTRB(
               16, 70, 16, 0), // Ubah padding pada bagian atas
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,26 +47,26 @@ class _ResetPageState extends State<ResetPage> {
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   height: 1.5,
-                  color: Color(0xffeeeeee),
+                  color: const Color(0xffeeeeee),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Container(
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffeeeeee)),
-                  color: Color(0xff393e46),
+                  border: Border.all(color: const Color(0xffeeeeee)),
+                  color: const Color(0xff393e46),
                   borderRadius: BorderRadius.circular(3),
                 ),
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(
-                        color: const Color.fromARGB(255, 236, 233, 233)),
+                        color: Color.fromARGB(255, 236, 233, 233)),
                     hintText: 'Masukkan Email Anda',
                     hintStyle: TextStyle(
-                        color: const Color.fromARGB(255, 206, 25, 25)),
+                        color: Color.fromARGB(255, 206, 25, 25)),
                     contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
                     prefixIcon: Icon(Icons.mail),
                   ),
@@ -75,29 +74,29 @@ class _ResetPageState extends State<ResetPage> {
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
                     height: 1.5,
-                    color: Color(0xffeeeeee),
+                    color: const Color(0xffeeeeee),
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Container(
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffeeeeee)),
-                  color: Color(0xff393e46),
+                  border: Border.all(color: const Color(0xffeeeeee)),
+                  color: const Color(0xff393e46),
                   borderRadius: BorderRadius.circular(3),
                 ),
                 child: TextField(
                   obscureText: !_isPasswordVisible1,
                   decoration: InputDecoration(
                     labelText: 'Password Baru',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: const TextStyle(color: Colors.white),
                     hintText: 'Password baru',
-                    hintStyle: TextStyle(
-                        color: const Color.fromARGB(255, 239, 10, 10)),
-                    contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                    prefixIcon: Icon(Icons.lock),
+                    hintStyle: const TextStyle(
+                        color: Color.fromARGB(255, 239, 10, 10)),
+                    contentPadding: const EdgeInsets.fromLTRB(18, 10, 18, 0),
+                    prefixIcon: const Icon(Icons.lock),
                     suffixIcon: GestureDetector(
                       onTap: () {
                         setState(() {
@@ -108,7 +107,7 @@ class _ResetPageState extends State<ResetPage> {
                         _isPasswordVisible1
                             ? Icons.visibility
                             : Icons.visibility_off,
-                        color: Color(0xffeeeeee),
+                        color: const Color(0xffeeeeee),
                       ),
                     ),
                   ),
@@ -116,29 +115,29 @@ class _ResetPageState extends State<ResetPage> {
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
                     height: 1.5,
-                    color: Color(0xffeeeeee),
+                    color: const Color(0xffeeeeee),
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Container(
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffeeeeee)),
-                  color: Color(0xff393e46),
+                  border: Border.all(color: const Color(0xffeeeeee)),
+                  color: const Color(0xff393e46),
                   borderRadius: BorderRadius.circular(3),
                 ),
                 child: TextField(
                   obscureText: !_isPasswordVisible,
                   decoration: InputDecoration(
                     labelText: 'Konfirmasi Password ',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: const TextStyle(color: Colors.white),
                     hintText: 'Masukkan Password Anda',
-                    hintStyle: TextStyle(
-                        color: const Color.fromARGB(255, 225, 16, 16)),
-                    contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                    prefixIcon: Icon(Icons.lock),
+                    hintStyle: const TextStyle(
+                        color: Color.fromARGB(255, 225, 16, 16)),
+                    contentPadding: const EdgeInsets.fromLTRB(18, 10, 18, 0),
+                    prefixIcon: const Icon(Icons.lock),
                     suffixIcon: GestureDetector(
                       onTap: () {
                         setState(() {
@@ -149,7 +148,7 @@ class _ResetPageState extends State<ResetPage> {
                         _isPasswordVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
-                        color: Color(0xffeeeeee),
+                        color: const Color(0xffeeeeee),
                       ),
                     ),
                   ),
@@ -157,11 +156,11 @@ class _ResetPageState extends State<ResetPage> {
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
                     height: 1.5,
-                    color: Color(0xffeeeeee),
+                    color: const Color(0xffeeeeee),
                   ),
                 ),
               ),
-              Spacer(), // Tambahkan Spacer untuk memberikan ruang di antara kotak password dan tombol "Daftar"
+              const Spacer(), // Tambahkan Spacer untuk memberikan ruang di antara kotak password dan tombol "Daftar"
               Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
@@ -169,7 +168,7 @@ class _ResetPageState extends State<ResetPage> {
                     // Logika untuk tombol "Daftar"
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.grey,
+                    backgroundColor: Colors.grey,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -191,7 +190,7 @@ class _ResetPageState extends State<ResetPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               )
             ],

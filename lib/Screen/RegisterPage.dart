@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: Padding(
         padding:
-            EdgeInsets.fromLTRB(16, 70, 16, 0), // Ubah padding pada bagian atas
+            const EdgeInsets.fromLTRB(16, 70, 16, 0), // Ubah padding pada bagian atas
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -49,20 +48,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 height: 1.5,
-                color: Color(0xffeeeeee),
+                color: const Color(0xffeeeeee),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Container(
               width: double.infinity,
               height: 50,
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xffeeeeee)),
-                color: Color(0xff393e46),
+                border: Border.all(color: const Color(0xffeeeeee)),
+                color: const Color(0xff393e46),
                 borderRadius: BorderRadius.circular(3),
               ),
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Username',
                   labelStyle:
                       TextStyle(color: Color.fromARGB(255, 228, 226, 226)),
@@ -75,24 +74,24 @@ class _RegisterPageState extends State<RegisterPage> {
                   fontSize: 12,
                   fontWeight: FontWeight.w300,
                   height: 1.5,
-                  color: Color(0xffeeeeee),
+                  color: const Color(0xffeeeeee),
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Container(
               width: double.infinity,
               height: 50,
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xffeeeeee)),
-                color: Color(0xff393e46),
+                border: Border.all(color: const Color(0xffeeeeee)),
+                color: const Color(0xff393e46),
                 borderRadius: BorderRadius.circular(3),
               ),
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   labelStyle: TextStyle(
-                      color: const Color.fromARGB(255, 215, 210, 210)),
+                      color: Color.fromARGB(255, 215, 210, 210)),
                   hintText: 'Masukkan Email',
                   hintStyle: TextStyle(color: Color.fromARGB(255, 226, 3, 3)),
                   contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
@@ -102,30 +101,30 @@ class _RegisterPageState extends State<RegisterPage> {
                   fontSize: 12,
                   fontWeight: FontWeight.w300,
                   height: 1.5,
-                  color: Color(0xffeeeeee),
+                  color: const Color(0xffeeeeee),
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Container(
               width: double.infinity,
               height: 50,
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xffeeeeee)),
-                color: Color(0xff393e46),
+                border: Border.all(color: const Color(0xffeeeeee)),
+                color: const Color(0xff393e46),
                 borderRadius: BorderRadius.circular(3),
               ),
               child: TextField(
                 obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  labelStyle: TextStyle(
-                      color: const Color.fromARGB(255, 237, 235, 235)),
+                  labelStyle: const TextStyle(
+                      color: Color.fromARGB(255, 237, 235, 235)),
                   hintText: 'Masukkan Password Anda',
                   hintStyle:
-                      TextStyle(color: const Color.fromARGB(255, 221, 10, 10)),
-                  contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                  prefixIcon: Icon(Icons.lock),
+                      const TextStyle(color: Color.fromARGB(255, 221, 10, 10)),
+                  contentPadding: const EdgeInsets.fromLTRB(18, 10, 18, 0),
+                  prefixIcon: const Icon(Icons.lock),
                   suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -136,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       _isPasswordVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
-                      color: Color(0xffeeeeee),
+                      color: const Color(0xffeeeeee),
                     ),
                   ),
                 ),
@@ -144,11 +143,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   fontSize: 12,
                   fontWeight: FontWeight.w300,
                   height: 1.5,
-                  color: Color(0xffeeeeee),
+                  color: const Color(0xffeeeeee),
                 ),
               ),
             ),
-            Spacer(), // Tambahkan Spacer untuk memberikan ruang di antara kotak password dan tombol "Daftar"
+            const Spacer(), // Tambahkan Spacer untuk memberikan ruang di antara kotak password dan tombol "Daftar"
             Align(
               alignment: Alignment.bottomRight,
               child: ElevatedButton(
@@ -156,7 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   // Logika untuk tombol "Daftar"
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.grey,
+                  backgroundColor: Colors.grey,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -178,7 +177,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             )
           ],

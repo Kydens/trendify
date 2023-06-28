@@ -3,10 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'Screen/WelcomePage.dart';
 import 'Screen/LoginPage.dart';
 import 'Screen/ResetPage.dart';
-import 'Screen/HomePage.dart';
-import 'Screen/ProfilePage.dart';
-import 'Screen/SearchPage.dart';
-import 'Screen/SettingPage.dart';
 
 void main() {
   runApp(MainApp());
