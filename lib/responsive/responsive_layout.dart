@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:trendify/utils/dimension.dart';
 
 class ResposiveLayout extends StatefulWidget {
   final Widget webScreenLayout;
