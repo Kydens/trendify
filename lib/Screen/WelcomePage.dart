@@ -38,7 +38,7 @@ class Index extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/Hedgehog.png',
+                    'assets/images/hedgehog.png',
                     width: 117,
                     height: 117,
                   ),
