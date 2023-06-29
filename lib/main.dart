@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'Screen/WelcomePage.dart';
-import 'Screen/LoginPage.dart';
+import 'Screen/loginPage.dart';
 import 'Screen/ResetPage.dart';
 
 void main() {
