@@ -1,200 +1,162 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trendify/Screen/signUp.dart';
+import 'package:trendify/resources/auth_method.dart';
 import 'package:trendify/utils/colors.dart';
+import 'package:trendify/widget/text_field.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: backgroundColor,
-        appBar: AppBar(
-          backgroundColor: backgroundColor,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton(
-                onPressed: () => {context.go('/')},
-                child: const Image(
-                  image: AssetImage('assets/icons/arrow_back.png'),
-                ),
-              ),
-              const Image(
-                image: AssetImage('assets/images/Hedgehog.png'),
-                width: 42,
-                height: 42,
-              ),
-              const SizedBox(
-                width: 62,
-              ),
-            ],
-          ),
-          elevation: 0,
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  void loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    String res = await AuthMethod().loginUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+
+    if (res == "success") {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const LoginScreen(),
         ),
-        body: const FormLogin(),
+      );
+    } else {
+      //
+      showSnackBar(res, context);
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  void navigateToSignUp() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const signUpScreen(),
       ),
     );
   }
-}
 
-class FormLogin extends StatefulWidget {
-  const FormLogin({
-    super.key,
-  });
-
-  @override
-  State<FormLogin> createState() => _FormLoginState();
-}
-
-class _FormLoginState extends State<FormLogin> {
-  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 80.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Masukkan Username Anda',
-                  style: GoogleFonts.poppins(
-                    color: fontColor,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Username',
-                labelStyle: GoogleFonts.poppins(
-                  color: fontColor,
-                  fontSize: 10,
-                ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: fontColor,
-                  ),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: fontColor),
-                ),
-                filled: true,
-                fillColor: inputBackgroundColor,
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Container(),
+                flex: 2,
               ),
-              style: GoogleFonts.poppins(color: fontColor),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Username is required!';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(
-              height: 30.0,
-            ),
-            Row(
-              children: [
-                Text(
-                  'Masukkan Password Anda',
-                  style: GoogleFonts.poppins(
-                    color: fontColor,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            TextFormField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                labelStyle: GoogleFonts.poppins(
-                  color: fontColor,
-                  fontSize: 10,
-                ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: fontColor,
-                  ),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: fontColor),
-                ),
-                filled: true,
-                fillColor: inputBackgroundColor,
+              //svg image
+              Image.asset(
+                'assets/images/hedgehog.png',
               ),
-              style: GoogleFonts.poppins(color: fontColor),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Password is required!';
-                }
-                return null;
-              },
-            ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    context.go('/resetPage');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: buttonColor,
-                    minimumSize: const Size(91.79, 35),
+              const SizedBox(
+                height: 64,
+              ),
+              //text field input for email
+              TextFieldIInput(
+                textEditingController: _emailController,
+                hintText: 'Enter Your Email',
+                textInputType: TextInputType.emailAddress,
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              //text field input for password
+              TextFieldIInput(
+                textEditingController: _passwordController,
+                hintText: 'Enter Your Password',
+                textInputType: TextInputType.text,
+                isPass: true,
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              //button login
+              InkWell(
+                onTap: loginUser,
+                child: Container(
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Text('Log In'),
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const ShapeDecoration(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4),
+                      ),
                     ),
-                  ),
-                  child: const Text(
-                    'Lupa Password?',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    color: buttonColor,
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      context.go('/');
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: buttonColor,
-                    minimumSize: const Size(91.79, 35),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Flexible(
+                child: Container(),
+                flex: 2,
+              ),
+
+              // transitioning to signing up
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: const Text("Don't have an account?"),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
                     ),
                   ),
-                  child: const Text(
-                    'Masuk',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                  GestureDetector(
+                    onTap: navigateToSignUp,
+                    child: Container(
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
