@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trendify_clone/responsive/MobileScreenLayout.dart';
-import 'package:trendify_clone/SearchPage.dart';
+import 'package:trendify/responsive/MobileScreenLayout.dart';
+import 'package:trendify/SearchPage.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
