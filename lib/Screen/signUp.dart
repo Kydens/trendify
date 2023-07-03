@@ -1,186 +1,237 @@
+import 'dart:typed_data';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:trendify/Screen/loginPage.dart';
+import 'package:trendify/resources/auth_method.dart';
+import 'package:trendify/responsive/mobile_screen_layout.dart';
+import 'package:trendify/responsive/responsive_layout.dart';
+import 'package:trendify/responsive/web_screen_layout.dart';
+import 'package:trendify/utils/colors.dart';
+import 'package:trendify/widget/text_field.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class signUpScreen extends StatefulWidget {
+  const signUpScreen({super.key});
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  State<signUpScreen> createState() => _screenSignUpScreenState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  bool _isPasswordVisible = false;
+class _screenSignUpScreenState extends State<signUpScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  Uint8List? _image;
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _bioController.dispose();
+    _usernameController.dispose();
+  }
+
+  void selectImage() async {
+    Uint8List im = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = im;
+    });
+  }
+
+  void signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethod().signUpUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: _bioController.text,
+      file: _image!,
+    );
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (res != 'success') {
+      showSnackBar(res, context);
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const ResposiveLayout(
+            mobileScreenLayout: MobileScreenLayout(),
+            webScreenLayout: WebScreenLayout(),
+          ),
+        ),
+      );
+    }
+  }
+
+  void navigateToLogin() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const Login(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 34, 40, 49),
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Image(
-              image: AssetImage('images/arrow_back.png'),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 105),
+              child: Image.asset(
+                'assets/images/hedgehog.png',
+                width: 42,
+                height: 42,
+              ),
             ),
-            Image.asset(
-              'images/Hedgehog.png',
-              width: 42,
-              height: 42,
-            ),
-            const SizedBox(
-              width: 32,
-            )
           ],
         ),
-        centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 34, 40, 49),
-        elevation: 0,
       ),
-      body: Padding(
-        padding:
-            const EdgeInsets.fromLTRB(16, 70, 16, 0), // Ubah padding pada bagian atas
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Buat Akun Anda',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                height: 1.5,
-                color: const Color(0xffeeeeee),
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Container(),
+                flex: 2,
               ),
-            ),
-            const SizedBox(height: 30),
-            Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xffeeeeee)),
-                color: const Color(0xff393e46),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Username',
-                  labelStyle:
-                      TextStyle(color: Color.fromARGB(255, 228, 226, 226)),
-                  hintText: 'Masukkan username',
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 224, 12, 12)),
-                  contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                  prefixIcon: Icon(Icons.account_box),
-                ),
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300,
-                  height: 1.5,
-                  color: const Color(0xffeeeeee),
-                ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xffeeeeee)),
-                color: const Color(0xff393e46),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  labelStyle: TextStyle(
-                      color: Color.fromARGB(255, 215, 210, 210)),
-                  hintText: 'Masukkan Email',
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 226, 3, 3)),
-                  contentPadding: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                  prefixIcon: Icon(Icons.mail),
-                ),
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300,
-                  height: 1.5,
-                  color: const Color(0xffeeeeee),
-                ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xffeeeeee)),
-                color: const Color(0xff393e46),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: TextField(
-                obscureText: !_isPasswordVisible,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  labelStyle: const TextStyle(
-                      color: Color.fromARGB(255, 237, 235, 235)),
-                  hintText: 'Masukkan Password Anda',
-                  hintStyle:
-                      const TextStyle(color: Color.fromARGB(255, 221, 10, 10)),
-                  contentPadding: const EdgeInsets.fromLTRB(18, 10, 18, 0),
-                  prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _isPasswordVisible = !_isPasswordVisible;
-                      });
-                    },
-                    child: Icon(
-                      _isPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                      color: const Color(0xffeeeeee),
+
+              //circular widget to acc and show our selected file
+              Stack(
+                children: [
+                  _image != null
+                      ? CircleAvatar(
+                          radius: 64,
+                          backgroundImage: MemoryImage(_image!),
+                        )
+                      : const CircleAvatar(
+                          radius: 64,
+                          backgroundImage: NetworkImage(
+                            'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg',
+                          ),
+                        ),
+                  Positioned(
+                    bottom: -10,
+                    left: 80,
+                    child: IconButton(
+                      onPressed: selectImage,
+                      icon: const Icon(Icons.add_a_photo),
                     ),
                   ),
-                ),
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300,
-                  height: 1.5,
-                  color: const Color(0xffeeeeee),
+                ],
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              //text field input for username
+              TextFieldIInput(
+                textEditingController: _usernameController,
+                hintText: 'Enter Your username',
+                textInputType: TextInputType.text,
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              //text field input for email
+              TextFieldIInput(
+                textEditingController: _emailController,
+                hintText: 'Enter Your Email',
+                textInputType: TextInputType.emailAddress,
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              //text field input for password
+              TextFieldIInput(
+                textEditingController: _passwordController,
+                hintText: 'Enter Your Password',
+                textInputType: TextInputType.text,
+                isPass: true,
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              TextFieldIInput(
+                textEditingController: _bioController,
+                hintText: 'Enter Your bio',
+                textInputType: TextInputType.text,
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              //button login
+              InkWell(
+                onTap: signUpUser,
+                child: Container(
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Text('Sign Up'),
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4),
+                      ),
+                    ),
+                    color: buttonColor,
+                  ),
                 ),
               ),
-            ),
-            const Spacer(), // Tambahkan Spacer untuk memberikan ruang di antara kotak password dan tombol "Daftar"
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Logika untuk tombol "Daftar"
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 10,
-                  ),
-                  child: Text(
-                    'Daftar',
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      height: 1.5,
-                      color: Colors.black,
+              const SizedBox(
+                height: 12,
+              ),
+              Flexible(
+                child: Container(),
+                flex: 2,
+              ),
+
+              // transitioning to signing up
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: const Text("Have an account?"),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
                     ),
                   ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            )
-          ],
+                  GestureDetector(
+                    onTap: navigateToLogin,
+                    child: Container(
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
