@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trendify/responsive/MobileScreenLayout.dart';
-import 'package:trendify/SearchPage.dart';
+import 'package:trendify/responsive/mobile_screen_layout.dart';
+import 'package:trendify/Screen/SearchPage.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class ProfilePage extends StatefulWidget {
   _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {Page
+class _ProfilePageState extends State<ProfilePage> {
   bool _isPasswordVisible = false;
   bool _isLiked = false;
 
@@ -23,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {Page
   void navigateToprofile() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => const ProfilePage),
+        builder: (context) => const ProfilePage(),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trendify/Screen/signUp.dart';
 import 'package:trendify/resources/auth_method.dart';
 import 'package:trendify/utils/colors.dart';
+import 'package:trendify/utils/utils.dart';
 import 'package:trendify/widget/text_field.dart';
 
 class LoginScreen extends StatefulWidget {

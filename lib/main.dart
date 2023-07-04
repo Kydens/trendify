@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
       ),
       GoRoute(
         path: "/login",
-        builder: ((context, state) => const Login()),
+        builder: ((context, state) => const LoginScreen()),
       ),
       GoRoute(
         path: "/resetPage",

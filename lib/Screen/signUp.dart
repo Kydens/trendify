@@ -9,6 +9,7 @@ import 'package:trendify/responsive/mobile_screen_layout.dart';
 import 'package:trendify/responsive/responsive_layout.dart';
 import 'package:trendify/responsive/web_screen_layout.dart';
 import 'package:trendify/utils/colors.dart';
+import 'package:trendify/utils/utils.dart';
 import 'package:trendify/widget/text_field.dart';
 
 class signUpScreen extends StatefulWidget {
@@ -76,7 +77,7 @@ class _screenSignUpScreenState extends State<signUpScreen> {
   void navigateToLogin() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => const Login(),
+        builder: (context) => const LoginScreen(),
       ),
     );
   }
