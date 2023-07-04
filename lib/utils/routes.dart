@@ -4,6 +4,7 @@ import 'package:trendify/Screen/ResetPage.dart';
 import 'package:trendify/Screen/WelcomePage.dart';
 
 final GoRouter router = GoRouter(
+  debugLogDiagnostics: true,
   initialLocation: '/',
   routes: [
     GoRoute(
